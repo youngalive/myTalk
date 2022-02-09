@@ -1,0 +1,33 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="follow">	
+	 	
+	 	
+ 	<insert id="insert" parameterType="Follow">
+ 		INSERT INTO `follow`
+ 		(fan_idx, star_idx, reg_date)
+ 		VALUES
+ 		(#{fan_idx}, #{star_idx}, SYSDATE())
+ 	</insert>	
+	
+	
+	<select id="getFollowByMember" parameterType="Member" resultType="Member">
+		SELECT m.*
+		FROM member AS m
+		JOIN follow AS f
+		ON f.star_idx = m.member_idx
+		WHERE f.fan_idx=#{member_idx}
+	</select>
+	
+	<select id="selectFollow" parameterType="Follow" resultType="Follow">
+		SELECT *
+		FROM follow 
+		WHERE fan_idx=#{fan_idx} AND star_idx=#{star_idx} 
+	</select>
+	
+	<delete id="delete" parameterType="Follow">
+		DELETE FROM follow
+		WHERE fan_idx=#{fan_idx} AND star_idx=#{star_idx}
+	</delete>
+	
+	
+</mapper>

@@ -1,0 +1,37 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">	
+	 	
+	 	
+	 	<insert id="insert" parameterType="Chat">
+	 		INSERT INTO `chat`
+	 		(title, content, member_idx, reg_date)
+	 		VALUES
+	 		(#{title}, #{content}, #{member_idx}, SYSDATE())
+	 	</insert>	
+	 	
+	 	
+	 	<select id="getChatByMember" parameterType="Chat" resultType="Chat">
+	 		SELECT *
+	 		FROM `chat`
+	 		WHERE member_idx=#{member_idx}
+	 	</select>
+	 	
+	 	<select id="getAllChat" resultType="Chat">
+	 		SELECT *
+	 		FROM `chat`
+	 		WHERE 1
+	 	</select>
+	 	
+	 	<delete id="delete" parameterType="Chat">
+	 		DELETE FROM chat
+	 		WHERE chat_idx=#{chat_idx}
+	 	</delete>
+	 	
+	 	<select id="getChat" parameterType="Chat" resultType="Chat">
+	 		SELECT *
+	 		FROM `chat`
+	 		WHERE chat_idx=#{chat_idx}
+	 	</select>
+	
+	
+</mapper>
